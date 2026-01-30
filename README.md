@@ -444,4 +444,7 @@ user=your_username
 password=your_password
 port=5432
 ```
-
+📋 requirements.txt
+```
+pip install -r requirements.txt
+```
