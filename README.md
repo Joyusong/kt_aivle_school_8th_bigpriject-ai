@@ -7,6 +7,7 @@ Gemini API를 사용하여 AI Agent를 구축하였습니다.
 ### 사전 준비
 
 1. PostGres 의 VectorDB 생성
+   
 -- ========================================
 -- IP.SUM Database Schema
 -- PostgreSQL 14+ Compatible
