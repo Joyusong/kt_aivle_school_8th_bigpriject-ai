@@ -3,7 +3,7 @@
 > **KT 에이블스쿨 8기 빅프로젝트 AI 17조**
 > Gemini API 기반의 AI Agent를 활용한 웹소설 세계관 관리 및 설정 추출 보조 서버입니다.
 
-[Frontend Repository]((https://github.com/Joyusong/ai0917-kt-aivle-shool-8th-bigproject-frontend)) | [Backend Repository]((https://github.com/nsg716/ai0917-kt-aivle-school-8th-bigproject-backend))
+[Frontend Repository](https://github.com/Joyusong/ai0917-kt-aivle-shool-8th-bigproject-frontend) | [Backend Repository](https://github.com/nsg716/ai0917-kt-aivle-school-8th-bigproject-backend)
 
 ---
 
@@ -100,7 +100,23 @@ CREATE TABLE lorebooks (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ
 );
+</details>
 
+2. Configuration 파일 작성
+루트 디렉토리에 다음 파일들을 생성해 주세요.
+
+✅ api_key.txt
+
+0=YOUR_GEMINI_API_KEY_0
+1=YOUR_GEMINI_API_KEY_1
+
+✅ db_info.txt
+
+host=your_host_ip
+database=your_db_name
+user=your_username
+password=your_password
+port=5432
 -- 인덱스 설정 (HNSW 벡터 검색 최적화)
 CREATE INDEX idx_lorebooks_embedding ON lorebooks USING hnsw (embedding vector_cosine_ops) WITH (m = 16, ef_construction = 64);
 -- 기타 인덱스 및 트리거 생략 (전체 쿼리는 스키마 파일 참조)
