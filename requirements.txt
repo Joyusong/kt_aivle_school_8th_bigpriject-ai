@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-multipart
+psycopg2-binary
+pgvector
+torch
+sentence-transformers
+numpy
+google-genai
+langgraph
+typing-extensions
