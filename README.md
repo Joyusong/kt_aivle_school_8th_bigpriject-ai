@@ -3,7 +3,9 @@
 > **KT 에이블스쿨 8기 빅프로젝트 AI 17조**
 > Gemini API 기반의 AI Agent를 활용한 웹소설 세계관 관리 및 설정 추출 보조 서버입니다.
 
-[Frontend Repository](https://github.com/Joyusong/ai0917-kt-aivle-shool-8th-bigproject-frontend) | [Backend Repository](https://github.com/nsg716/ai0917-kt-aivle-school-8th-bigproject-backend)
+## 🔗 Repository Links
+[![Frontend](https://img.shields.io/badge/Frontend-Repository-blue?style=for-the-badge&logo=github)](https://github.com/Joyusong/ai0917-kt-aivle-shool-8th-bigproject-frontend)
+[![Backend](https://img.shields.io/badge/Backend-Repository-green?style=for-the-badge&logo=github)](https://github.com/nsg716/ai0917-kt-aivle-school-8th-bigproject-backend)
 
 ---
 
