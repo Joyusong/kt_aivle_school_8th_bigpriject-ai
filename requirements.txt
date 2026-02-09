@@ -9,3 +9,4 @@ numpy
 google-genai
 langgraph
 typing-extensions
+reportlab
