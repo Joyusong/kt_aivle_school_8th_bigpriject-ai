@@ -10,3 +10,4 @@ google-genai
 langgraph
 typing-extensions
 jupyter
+reportlab
