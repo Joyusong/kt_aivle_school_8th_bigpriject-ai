@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  bigproject-ai:
+    build: .
+    ports:
+      - "8888:8888"
+      - "7767:7767"
+    volumes:
+      - ./save_original:/app/save_original
+      - ./pdf_results:/app/pdf_results
+    tty: true
+    stdin_open: true
