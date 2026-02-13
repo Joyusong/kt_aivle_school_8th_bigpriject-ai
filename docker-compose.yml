@@ -3,10 +3,32 @@ services:
   bigproject-ai:
     build: .
     ports:
-      - "8888:8888"
+      - "8889:8889"
+      - "7768:7768"
+    volumes:
+      - ./save_original:/app/save_original
+      - ./pdf_results:/app/pdf_results
+      - ~/.cache/pip:/root/.cache/pip
+    tty: true
+    stdin_open: true
+  bigproject-ai-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    ports:
+      - "8888:8888"     # 포트 충돌 피하기 위해 다른 호스트 포트
       - "7767:7767"
     volumes:
       - ./save_original:/app/save_original
       - ./pdf_results:/app/pdf_results
+      - ~/.cache/pip:/root/.cache/pip
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     tty: true
     stdin_open: true
