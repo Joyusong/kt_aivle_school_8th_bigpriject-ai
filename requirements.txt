@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 python-multipart
-psycopg2-binary
+asyncpg
 pgvector
 torch
 sentence-transformers
@@ -10,3 +10,4 @@ google-genai
 langgraph
 typing-extensions
 reportlab
+redis
