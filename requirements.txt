@@ -11,3 +11,5 @@ langgraph
 typing-extensions
 jupyter
 reportlab
+asyncpg
+redis
