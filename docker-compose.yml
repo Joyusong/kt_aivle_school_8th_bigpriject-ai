@@ -1,20 +1,9 @@
 version: "3.9"
 services:
   bigproject-ai:
-    build: .
-    ports:
-      - "8889:8889"
-      - "7768:7768"
-    volumes:
-      - ./save_original:/app/save_original
-      - ./pdf_results:/app/pdf_results
-      - ~/.cache/pip:/root/.cache/pip
-    tty: true
-    stdin_open: true
-  bigproject-ai-gpu:
     build:
       context: .
-      dockerfile: Dockerfile.gpu
+      dockerfile: Dockerfile
     ports:
       - "8888:8888"     # 포트 충돌 피하기 위해 다른 호스트 포트
       - "7767:7767"
@@ -32,3 +21,13 @@ services:
               capabilities: [gpu]
     tty: true
     stdin_open: true
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+              
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"

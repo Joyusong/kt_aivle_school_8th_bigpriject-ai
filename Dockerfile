@@ -1,26 +1,25 @@
-FROM python:3.10-slim
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+RUN apt-get update && \
+    apt-get install -y python3.10 python3.10-venv python3-pip fontconfig && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN python3.10 -m pip install --upgrade pip
+
 WORKDIR /app
 
-# install system fonts and utilities before Python deps
-RUN apt-get update \
-    && apt-get install -y fontconfig \
-    && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python3.10 -m pip install -r requirements.txt
 
 RUN mkdir -p /usr/share/fonts/truetype/malgun
 COPY malgun.ttf malgunbd.ttf /usr/share/fonts/truetype/malgun/
 RUN fc-cache -f -v
 
-# install dependencies
-COPY requirements.txt .
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+COPY db_info.txt final.ipynb run.ipynb api_key.txt final.py ./
 
-# copy notebooks and credentials that should live inside the container
-COPY db_info.txt final.ipynb run.ipynb api_key.txt ./
-
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+# CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+CMD [ "uvicorn", "final:app", "--host", "0.0.0.0", "--port", "7767" ]
